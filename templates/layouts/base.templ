@@ -5,14 +5,6 @@ type LayoutProps struct {
 	Description string
 }
 
-script theme() {
-	document.documentElement.classList.toggle(
-		"dark",
-		localStorage.theme === "dark" ||
-		(!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
-	);
-}
-
 templ Base(props LayoutProps) {
 	<!DOCTYPE html>
 	<html lang="en">
@@ -36,7 +28,7 @@ templ Base(props LayoutProps) {
 			<meta property="og:description" content={ props.Description }/>
 			<meta property="og:type" content="article"/>
 			<meta property="og:image" content="/favicon.png"/>
-			@theme()
+			<script src="/index.js"></script>
 			<script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.js" integrity="sha384-ezjq8118wdwdRMj+nX4bevEi+cDLTbhLAeFF688VK8tPDGeLUe0WoY2MZtSla72F" crossorigin="anonymous"></script>
 			<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 		</head>
