@@ -15,6 +15,7 @@ import (
 	"github.com/LigeronAhill/gottha/pkg/db"
 	"github.com/LigeronAhill/gottha/pkg/logger"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/fiber/v2/middleware/requestid"
 	"github.com/gofiber/fiber/v2/middleware/session"
@@ -85,6 +86,13 @@ func main() {
 	})
 
 	// Промежуточное програмное обеспечение
+	app.Use(cors.New(cors.Config{
+		AllowOrigins:     fmt.Sprintf("http://%s", addr),
+		AllowHeaders:     "Origin, Content-Type, Accept, X-Csrf-Token, HX-Request",
+		AllowMethods:     "GET,POST,PUT,DELETE",
+		AllowCredentials: true,
+		ExposeHeaders:    "X-Csrf-Token",
+	}))
 	app.Use(requestid.New())
 	app.Use(slogfiber.New(customLogger))
 	app.Use(recover.New())
