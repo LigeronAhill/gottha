@@ -1,0 +1,34 @@
+services:
+    postgres:
+        container_name: gotthapg
+        image: postgres:latest
+        user: postgres
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: gotthadb
+            PG_DATA: /data/postgres
+        volumes:
+            - postgres-data:/data/postgres
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready -U postgres"]
+            interval: 5s
+            timeout: 5s
+            retries: 10
+            start_period: 5s
+
+    app:
+        container_name: server
+        build: .
+        # image: gottha:latest
+        environment:
+            APP_DATABASE_URL: "postgres://postgres:postgres@gotthapg:5432/gotthadb?sslmode=disable"
+            APP_HOST: "http://localhost:42069"
+        ports:
+            - "42069:3000"
+        depends_on:
+            postgres:
+                condition: service_healthy
+        restart: on-failure
+volumes:
+    postgres-data:

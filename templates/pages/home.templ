@@ -1,0 +1,27 @@
+package pages
+
+import (
+	"github.com/LigeronAhill/gottha/templates/components"
+	"github.com/LigeronAhill/gottha/templates/layouts"
+)
+
+templ Home(count int) {
+	@layouts.Base(layouts.LayoutProps{
+		Title:       "Counter App",
+		Description: "Counter App sample",
+	}) {
+		<main class="space-y-6 text-center">
+			<h1 class="text-2xl font-bold">Counter</h1>
+			<div id="count">
+				@components.Counter(count)
+			</div>
+			<button
+				class="bg-purle-600 dark:bg-white dark:text-black h-8 px-4 py-2 rounded-xl my-2 mx-auto leading-none uppercase"
+				hx-post="/count"
+				hx-target="#count"
+			>
+				Increment
+			</button>
+		</main>
+	}
+}

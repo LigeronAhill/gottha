@@ -1,0 +1,39 @@
+package layouts
+
+type LayoutProps struct {
+	Title       string
+	Description string
+}
+
+templ Base(props LayoutProps) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8"/>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			<link rel="stylesheet" href="/main.css"/>
+			<link rel="icon" type="image/png" href="/favicon-32x32.png"/>
+			<link rel="apple-touch-icon" sizes="48x48" href="/favicon-48x48.png"/>
+			<link rel="apple-touch-icon" sizes="72x72" href="/favicon-72x72.png"/>
+			<link rel="apple-touch-icon" sizes="96x96" href="/favicon-96x96.png"/>
+			<link rel="apple-touch-icon" sizes="144x144" href="/favicon-144x144.png"/>
+			<link rel="apple-touch-icon" sizes="192x192" href="/favicon-192x192.png"/>
+			<link rel="apple-touch-icon" sizes="256x256" href="/favicon-256x256.png"/>
+			<link rel="apple-touch-icon" sizes="384x384" href="/favicon-384x384.png"/>
+			<link rel="apple-touch-icon" sizes="512x512" href="/favicon-512x512.png"/>
+			<link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/>
+			<title>{ props.Title }</title>
+			<meta name="description" content={ props.Description }/>
+			<meta property="og:title" content={ props.Title }/>
+			<meta property="og:description" content={ props.Description }/>
+			<meta property="og:type" content="article"/>
+			<meta property="og:image" content="/favicon.png"/>
+			<script src="/index.js"></script>
+			<script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.js" integrity="sha384-ezjq8118wdwdRMj+nX4bevEi+cDLTbhLAeFF688VK8tPDGeLUe0WoY2MZtSla72F" crossorigin="anonymous"></script>
+			<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+		</head>
+		<body class="bg-white text-black dark:bg-black dark:text-white max-w-5xl my-12 mx-auto">
+			{ children... }
+		</body>
+	</html>
+}

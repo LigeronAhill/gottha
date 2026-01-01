@@ -1,0 +1,7 @@
+/tmp
+/node_modules
+.env
+settings.toml
+package-lock.json
+*_templ.go
+.git/
