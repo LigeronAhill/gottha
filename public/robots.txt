@@ -1,0 +1,29 @@
+User-agent: Yandex
+Host: localhost
+Disallow: /*?
+Disallow: /*?*
+Disallow: /*login*
+Disallow: /*signin*
+Disallow: /*signup*
+Disallow: /*logout*
+Clean-param: ref /some-path/
+Clean-param: sid /some-path/ /another-path/
+Clean-param: sessionId&token /
+
+User-agent: Googlebot
+Disallow: /*?
+Disallow: /*?*
+Disallow: /*login*
+Disallow: /*signin*
+Disallow: /*signup*
+Disallow: /*logout*
+
+User-agent: *
+Disallow: /*?
+Disallow: /*?*
+Disallow: /*login*
+Disallow: /*signin*
+Disallow: /*signup*
+Disallow: /*logout*
+
+Sitemap: http://localhost:3000/sitemap.xml
