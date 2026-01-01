@@ -17,7 +17,7 @@ templ Home(count int) {
 			</div>
 			<button
 				class="bg-purle-600 dark:bg-white dark:text-black h-8 px-4 py-2 rounded-xl my-2 mx-auto leading-none uppercase"
-				hx-post="/count"
+				hx-post={ templ.SafeURL("/count") }
 				hx-target="#count"
 			>
 				Increment
