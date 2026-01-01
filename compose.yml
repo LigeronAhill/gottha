@@ -23,7 +23,8 @@ services:
         # image: gottha:latest
         environment:
             APP_DATABASE_URL: "postgres://postgres:postgres@gotthapg:5432/gotthadb?sslmode=disable"
-            APP_HOST: "http://localhost:42069"
+            APP_HOST: "http://0.0.0.0"
+            APP_PORT: 3000
         ports:
             - "42069:3000"
         depends_on:

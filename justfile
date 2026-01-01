@@ -96,6 +96,7 @@ pre-commit: lint test-race
 [group("app")]
 install-deps:
     npm install tailwindcss @tailwindcss/cli
+    go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
     go get -tool github.com/a-h/templ/cmd/templ@latest
     go get -tool github.com/air-verse/air@latest
     go get -tool github.com/pressly/goose/v3/cmd/goose@latest
@@ -157,8 +158,13 @@ create NAME:
 validate:
     go tool goose validate
 
+# Проверить файлы миграции без их применения
+[group("database")]
+gen-sql:
+    sqlc generate
+
 # Сгенерировать набор иконок
-[group("fivicon")]
+[group("favicon")]
 gen-fav SOURCE:
     npx favpie {{ SOURCE }} -o ./public -ap {{ app_name }} -sn {{ app_name }}
 

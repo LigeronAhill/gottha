@@ -3,17 +3,18 @@ package sitemap
 import (
 	"bytes"
 	"context"
+	"fmt"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/sabloger/sitemap-generator/smg"
 )
 
-func Serve(ctx context.Context, app *fiber.App, host string) {
+func Serve(ctx context.Context, app *fiber.App, addr string) {
 	app.Get("/sitemap.xml", func(c *fiber.Ctx) error {
 		now := time.Now().UTC()
 		sm := smg.NewSitemap(true)
-		sm.SetHostname(host)
+		sm.SetHostname(fmt.Sprintf("http://%s", addr))
 		sm.SetLastMod(&now)
 		sm.SetCompress(false)
 		err := sm.Add(&smg.SitemapLoc{
