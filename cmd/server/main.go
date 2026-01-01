@@ -100,6 +100,5 @@ func main() {
 
 	// Запуск сервера
 	slog.Info(fmt.Sprintf("🚀 Сервер запущен на %s", addr))
-	slog.Info("Нажмите Ctrl+C для остановки ❌")
 	log.Fatal(app.Listen(addr))
 }
